@@ -31,11 +31,14 @@
 
 ## 진행 상태
 - [x] 01. HWPX (pages/01-hwpx.md, assets/hwpx-structure.png) — 2026-08-08 산문 중심으로 전면 리라이트
-- [ ] **다음: 02. DOCX · XLSX · PPTX — 매일 쓰면서 한 번도 열어보지 않은 상자**
-  - 셋을 한 장에 묶는다. 01에서 배운 ZIP+XML 열쇠가 그대로 통한다는 것이 이 장의 반전이다.
-  - 각각의 목적지: docx는 `word/document.xml`, xlsx는 `xl/worksheets/sheet1.xml`+`xl/sharedStrings.xml`, pptx는 `ppt/slides/slideN.xml`.
-  - 자동화 각도: 계약서 일괄 생성(docx), 시트 값만 갈아 끼우기(xlsx), 장표 텍스트 일괄 교체(pptx).
-- [ ] 이후 EPUB, SVG, JSON, CSV …
+- [x] 02. DOCX · XLSX · PPTX (pages/02-docx-xlsx-pptx.md) — 2026-08-08
+  - 집필 전 python-docx·openpyxl·pptx와 Excel COM으로 실제 파일을 만들어 내부를 확인했다. 검증 스크립트는 세션 스크래치패드에 있었고 저장소에는 넣지 않았다.
+  - 확인된 사실: 오피스는 `mimetype`이 없고 `[Content_Types].xml`을 쓰며 항목 순서 제약이 없다. 엑셀은 문자열을 `xl/sharedStrings.xml`에 모아 두고 셀에는 번호만 넣는다(같은 글자를 쓴 두 셀이 같은 번호를 가리키므로 목록을 고치면 함께 바뀐다). 수식 셀에는 계산 결과가 함께 저장된다.
+- [ ] **다음: 03. EPUB — 전자책을 열면 웹페이지가 나옵니다**
+  - 02의 마지막에서 "안에 든 것이 XML이 아니라 HTML"이라는 예고로 이어진다. 여기서 책이 문서에서 웹으로 건너간다.
+- [ ] 이후 SVG, CSV, JSON …
+
+**새 장 집필 전 원칙**: 내부 구조는 추측하지 말고 실제 파일을 만들어 열어보고 쓴다. 01·02가 그렇게 쓰였다.
 
 ## 산출물 3종 (원고 하나, 조판 셋)
 1. **위키독스** — `main` push 시 자동 발행 (`TOC.md`·`pages/`·`assets/`)
