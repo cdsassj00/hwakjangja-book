@@ -11,7 +11,7 @@
   * [05. CSV — 세상에서 가장 단순한 표, 그리고 가장 자주 깨지는 표](pages/05-csv.md)
   * [06. JSON — 프로그램과 AI가 주고받는 공용어](pages/06-json.md)
   * [07. XML — 당신의 세금계산서도 이 형식입니다](pages/07-xml.md)
-  * [08. YAML — 괄호를 없앴더니 생긴 일](pages/08-yaml.md)
+  * [08. YAML — 회사 설정 파일을 직접 고치는 법](pages/08-yaml.md)
   * [09. MD — 지금 읽고 계신 이 책도 이렇게 쓰였습니다](pages/09-md.md)
   * [10. ICS — 메일에 붙은 일정이 캘린더로 들어가는 이유](pages/10-ics.md)
   * [11. VCF — 명함 한 장이 파일 한 개](pages/11-vcf.md)
