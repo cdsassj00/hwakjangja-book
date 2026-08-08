@@ -1,0 +1,7 @@
+# Claude Code 로컬 권한 설정 (개인 환경 전용)
+.claude/settings.local.json
+
+# OS 부산물
+Thumbs.db
+desktop.ini
+.DS_Store
