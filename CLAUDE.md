@@ -28,17 +28,10 @@
 - [ ] **다음: 02. XML** — 01의 마지막 질문("그 <태그>들의 정체가 XML")에서 이어짐. 제목안: `02. XML — 브라우저에 숨어 있던 만능 번역기`
 - [ ] 이후 03. SVG, 04. JSON, 05. CSV …
 
-## 처음 한 번: GitHub에 올리고 위키독스에 연결
-```bash
-# (이 폴더에서) GitHub CLI 인증이 안 돼 있으면 먼저:
-gh auth login
-
-# 저장소 생성 + 첫 push 한 번에 (공개 권장)
-git init && git add . && git commit -m "docs: 확장자의 재발견 — 01. HWPX"
-git branch -M main
-gh repo create hwakjangja-book --public --source=. --remote=origin --push
-```
-그다음 위키독스 → **새 책 만들기 → 깃허브 연동**에서 이 저장소를 연결하면 끝.
+## GitHub 저장소 (완료)
+- 원격: **https://github.com/cdsassj00/hwakjangja-book** (공개, 기본 브랜치 `main`)
+- 2026-08-08 첫 push 완료(머리말 + 01. HWPX + 인쇄 마스터). 이후로는 아래 "새 장 추가 워크플로우"만 반복한다.
+- 위키독스 연결은 위키독스 웹에서 **새 책 만들기 → 깃허브 연동**에 이 저장소 URL을 등록하면 되고, 연결 후에는 `main` push마다 자동 반영된다. (연결은 사람이 직접 수행 — 위키독스 계정 작업)
 
 ## 새 장 추가 워크플로우 (반복)
 1. `pages/NN-slug.md` 작성(H1 `# NN. 제목`), 필요 그림은 `assets/`에.
