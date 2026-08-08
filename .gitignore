@@ -4,6 +4,12 @@
 # oh-my-claudecode 작업 상태 (세션 전용)
 .omc/
 
+# 빌드 생성물 — python print/build.py --pdf 로 언제든 다시 만든다
+print/확장자의재발견-크라운판.html
+print/확장자의재발견-크라운판.pdf
+print/*-미리보기.html
+print/_*.png
+
 # OS 부산물
 Thumbs.db
 desktop.ini
