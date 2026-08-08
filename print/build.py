@@ -149,6 +149,11 @@ def convert(md, page_path):
             out.append(f"<{tag}>" + "".join(f"<li>{inline(t)}</li>" for t in items) + f"</{tag}>")
             continue
 
+        # 위키독스 전용 매크로는 인쇄본에서 뺀다 (하위 페이지 목록은 목차가 대신한다)
+        if line.strip() == "[[SubPages]]":
+            i += 1
+            continue
+
         if line.strip() == "---":
             out.append("<hr>")
             i += 1
