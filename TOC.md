@@ -9,3 +9,5 @@
 * [제2부 · 열어보면 글자인 것](pages/part-2.md)
   * [04. SVG — 메모장으로 열리는 그림](pages/04-svg.md)
   * [05. CSV — 세상에서 가장 단순한 표, 그리고 가장 자주 깨지는 표](pages/05-csv.md)
+  * [06. JSON — 프로그램과 AI가 주고받는 공용어](pages/06-json.md)
+  * [07. XML — 당신의 세금계산서도 이 형식입니다](pages/07-xml.md)
