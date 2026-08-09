@@ -53,7 +53,10 @@ def plan():
 
 def main(apply):
     lines, chapters = plan()
-    changed = [c for c in chapters if c["old_no"] != c["new_no"]]
+    # 이름을 바꿔야 하는지는 '파일 이름'을 기준으로 판단한다.
+    # 목차 제목의 번호만 보면, 새로 넣은 원고(98-odf.md 처럼 임시 번호를 단 것)를
+    # 놓친다.
+    changed = [c for c in chapters if c["old_path"].name != c["new_path"].name]
 
     if not changed:
         print("번호가 이미 TOC.md 순서와 맞습니다. 바꿀 것이 없습니다.")
@@ -73,10 +76,17 @@ def main(apply):
         print("\n(미리보기입니다. 실제로 바꾸려면 --apply 를 붙이세요)")
         return
 
-    # 1) 파일 이름 바꾸기 — git 이력을 잇기 위해 git mv 를 쓴다
+    # 1) 파일 이름 바꾸기
+    #    이미 커밋된 원고는 git mv 로 옮겨 이력을 잇는다.
+    #    아직 커밋되지 않은 새 원고는 git 이 모르므로 그냥 이름만 바꾼다.
     for c in changed:
-        subprocess.run(["git", "-C", str(ROOT), "mv", str(c["old_path"].relative_to(ROOT)),
-                        str(c["new_path"].relative_to(ROOT))], check=True)
+        r = subprocess.run(
+            ["git", "-C", str(ROOT), "mv", str(c["old_path"].relative_to(ROOT)),
+             str(c["new_path"].relative_to(ROOT))],
+            capture_output=True, text=True, encoding="utf-8", errors="ignore")
+        if r.returncode != 0:
+            c["old_path"].rename(c["new_path"])
+            print(f"  (새 원고라 git 이력 없이 이름만 바꿈: {c['new_path'].name})")
 
     # 2) 각 원고의 H1 번호 고치기
     for c in chapters:
@@ -94,13 +104,40 @@ def main(apply):
 
     print("\n파일명·H1·TOC.md 를 맞췄습니다.")
 
-    # 4) 사람이 손봐야 할 곳 알려주기
-    print("\n--- 손으로 고쳐야 하는 연결 문장 ---")
+    # 4) "다음 장 →" 줄의 번호 맞추기
+    #    제목은 그대로이므로 제목으로 새 번호를 찾아 붙인다.
+    by_title = {c["title"]: c["new_no"] for c in chapters}
+    NEXT = re.compile(r"(\*\*다음 장 →\*\*\s*\*\*)(\d+)\.\s*(.+?)(\*\*)")
+    fixed_lines = []
     for p in sorted((ROOT / "pages").glob("[0-9][0-9]-*.md")):
-        for n, line in enumerate(p.read_text(encoding="utf-8").splitlines(), 1):
-            if "다음 장 →" in line:
-                print(f"  {p.name}:{n}  {line.strip()[:70]}")
-    print("\n위 줄들이 새 순서와 맞는지 확인하고, 다음 장 도입부의 연결 문장도 함께 보세요.")
+        text = p.read_text(encoding="utf-8")
+
+        def repl(m):
+            title = m.group(3).strip()
+            no = by_title.get(title)
+            if no is None:
+                fixed_lines.append(f"  ? {p.name}: 목차에 없는 제목 — {title}")
+                return m.group(0)
+            if int(m.group(2)) != no:
+                fixed_lines.append(f"  · {p.name}: {m.group(2)} → {no:02d}  {title}")
+            return f"{m.group(1)}{no:02d}. {title}{m.group(4)}"
+
+        new = NEXT.sub(repl, text)
+        if new != text:
+            p.write_text(new, encoding="utf-8")
+
+    if fixed_lines:
+        print("\n--- '다음 장 →' 줄 번호를 맞췄습니다 ---")
+        for l in fixed_lines:
+            print(l)
+
+    # 5) 사람이 손봐야 할 곳 알려주기
+    print("\n--- 사람이 확인해야 하는 곳 ---")
+    print("장 끝의 연결 문단과 다음 장 도입부의 문장은 내용이라서 기계가 못 고칩니다.")
+    print("아래 장들의 마지막 문단과 그다음 장 첫 문단이 이어지는지 읽어 보세요.")
+    for c in chapters:
+        if c["old_no"] != c["new_no"]:
+            print(f"  {c['new_path'].name}")
 
 
 if __name__ == "__main__":
