@@ -17,3 +17,6 @@
   * [11. VCF — 명함 한 장이 파일 한 개](pages/11-vcf.md)
 * [제3부 · 눈과 귀에 담기는 것](pages/part-3.md)
   * [12. HEIC · WebP · AVIF — 사진이 반으로 줄어든 이유](pages/12-heic-webp-avif.md)
+  * [13. MP4 · WebM — 어떤 영상은 열리고 어떤 영상은 안 열리는 이유](pages/13-mp4-webm.md)
+  * [14. MP3 · WAV · FLAC — 한 시간 회의를 55메가에 담는 법](pages/14-mp3-wav-flac.md)
+  * [15. RAW — 사진작가가 보낸 34메가짜리 파일](pages/15-raw.md)
