@@ -15,3 +15,5 @@
   * [09. MD — 지금 읽고 계신 이 책도 이렇게 쓰였습니다](pages/09-md.md)
   * [10. ICS — 메일에 붙은 일정이 캘린더로 들어가는 이유](pages/10-ics.md)
   * [11. VCF — 명함 한 장이 파일 한 개](pages/11-vcf.md)
+* [제3부 · 눈과 귀에 담기는 것](pages/part-3.md)
+  * [12. HEIC · WebP · AVIF — 사진이 반으로 줄어든 이유](pages/12-heic-webp-avif.md)
