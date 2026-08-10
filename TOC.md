@@ -15,7 +15,7 @@
   * [09. XML — 당신의 세금계산서도 이 형식입니다](pages/09-xml.md)
   * [10. YAML — 회사 설정 파일을 직접 고치는 법](pages/10-yaml.md)
   * [11. MD — 지금 읽고 계신 이 책도 이렇게 쓰였습니다](pages/11-md.md)
-  * [12. ICS — 일정을 파일로 만들어 발송하기](pages/12-ics.md)
+  * [12. ICS — 면접 일정 200개를 한 번에 보내는 도구 만들기](pages/12-ics.md)
   * [13. VCF — 명함 한 장이 파일 한 개](pages/13-vcf.md)
 * [제3부 · 눈과 귀에 담기는 것](pages/part-3.md)
   * [14. HEIC · WebP · AVIF — 사진이 반으로 줄어든 이유](pages/14-heic-webp-avif.md)
